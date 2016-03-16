@@ -1,4 +1,4 @@
-package com.rouxium.motiveone.controller;
+package com.rouxium.motiveone.controller.rest;
 
 import com.google.common.collect.ImmutableMap;
 import com.rouxium.motiveone.model.*;
@@ -8,6 +8,7 @@ import com.rouxium.motiveone.repository.MuscleGroupRepository;
 import com.rouxium.motiveone.repository.MuscleHeadRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Arrays;
@@ -17,6 +18,7 @@ import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/admin")
+@PreAuthorize("@securityService.hasProtectedAccess()")
 public class AdminController {
 
     @Autowired

@@ -1,4 +1,4 @@
-package com.rouxium.motiveone.controller;
+package com.rouxium.motiveone.controller.rest;
 
 import com.rouxium.motiveone.model.Exercise;
 import com.rouxium.motiveone.model.MuscleHead;
