@@ -19,6 +19,7 @@ import java.util.stream.Collectors;
 @RestController
 @RequestMapping("/admin")
 @PreAuthorize("@securityService.hasProtectedAccess()")
+//@PreAuthorize("hasRole('ADMIN')")
 public class AdminController {
 
     @Autowired

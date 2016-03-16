@@ -1,13 +1,13 @@
 package com.rouxium.motiveone.model.factory;
 
 import com.rouxium.motiveone.domain.entity.User;
-import com.rouxium.motiveone.model.security.CerberusUser;
+import com.rouxium.motiveone.model.security.AuthenticationUser;
 import org.springframework.security.core.authority.AuthorityUtils;
 
 public class AuthenticationUserFactory {
 
-    public static CerberusUser create(User user) {
-        return new CerberusUser(
+    public static AuthenticationUser create(User user) {
+        return new AuthenticationUser(
                 user.getId(),
                 user.getUsername(),
                 user.getPassword(),

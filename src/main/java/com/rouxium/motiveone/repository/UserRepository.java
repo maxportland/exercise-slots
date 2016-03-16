@@ -1,11 +1,8 @@
 package com.rouxium.motiveone.repository;
 
-import com.brahalla.Cerberus.domain.entity.User;
+import com.rouxium.motiveone.domain.entity.User;
+import org.springframework.data.mongodb.repository.MongoRepository;
 
-import org.springframework.data.jpa.repository.JpaRepository;
-
-public interface UserRepository extends JpaRepository<User, Long> {
-
-  public User findByUsername(String username);
-
+public interface UserRepository extends MongoRepository<User, Long> {
+    User findByUsername(String username);
 }
