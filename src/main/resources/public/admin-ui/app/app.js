@@ -26,6 +26,7 @@ app.config(['$routeProvider', function($routeProvider) {
         templateUrl: 'app/partials/login.html',
         controller: 'LoginController'
     }).when('/logout', {
+        template: " ",
         controller: 'LogoutController'
     }).otherwise({
         redirectTo: '/slots'
@@ -68,17 +69,26 @@ app.config(function ($httpProvider) {
 });
 
 app.controller('NavigationController', ['$scope', '$window', '$rootScope', '$location', function ($scope, $window, $rootScope, $location) {
-    if($window.sessionStorage.token) {
-        $scope.navigation = [
-            {'name': 'Slots', 'path': '/slots'},
-            {'name': 'Exercises', 'path': '/exercises'},
-            {'name': 'Exercise Types', 'path': '/exercise-types'},
-            {'name': 'Muscle Groups', 'path': '/muscle-groups'},
-            {'name': 'Muscle Heads', 'path': '/muscle-heads'}
-        ];
-    } else {
-        $scope.navigation = [];
-    }
+    $scope.setupNavigation = function() {
+        if($window.sessionStorage.token) {
+            $scope.navigation = [
+                {'name': 'Slots', 'path': '/slots'},
+                {'name': 'Exercises', 'path': '/exercises'},
+                {'name': 'Exercise Types', 'path': '/exercise-types'},
+                {'name': 'Muscle Groups', 'path': '/muscle-groups'},
+                {'name': 'Muscle Heads', 'path': '/muscle-heads'}
+            ];
+        } else {
+            $scope.navigation = [];
+        }
+    };
+    $scope.$watch(
+        function () {
+            return $window.sessionStorage.token
+        }, function(){
+            $scope.setupNavigation();
+        }
+    );
     $scope.getPath = function() {
         return $location.path();
     };

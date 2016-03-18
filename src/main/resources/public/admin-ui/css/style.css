@@ -6,6 +6,27 @@ body {
     font-weight:600;
 }
 
+.header-bar {
+    position:relative;
+}
+
+.toolbox {
+    position:absolute;
+    right:10px;
+    top:15px;
+}
+
+.toolbox ul {
+    margin:0;
+    padding:0;
+    list-style: none;
+}
+
+.toolbox ul li a {
+    color:white;
+    font-weight:600;
+}
+
 .cursor-pointer {
     cursor:pointer;
 }
@@ -93,4 +114,8 @@ body {
 
 .card-5 {
     box-shadow: 0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22);
+}
+
+.label-default {
+    background-color: #AAAAAA;
 }

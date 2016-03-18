@@ -7,7 +7,7 @@ appControllers.controller('LoginController', ['$scope', '$rootScope', '$window',
             $rootScope.userLoggedIn = true;
             $location.path("/");
         }).error(function () {
-            delete $window.sessionStorage.token;
+            $window.sessionStorage.clear();
             $rootScope.userLoggedIn = false;
         });
     };

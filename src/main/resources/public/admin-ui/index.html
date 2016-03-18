@@ -32,8 +32,15 @@
 <body>
 <div style="background-color:#2a2c2e;border-bottom:1px solid #121213;">
     <div class="container">
-        <div class="row">
+        <div class="row header-bar">
             <h2 style="color:#dddddf;font-weight:700;margin-top: 10px;">MotiveOne</h2>
+            <div class="toolbox">
+                <ul>
+                    <li ng-if="userLoggedIn">
+                        <a ng-href="#/logout">Logout</a>
+                    </li>
+                </ul>
+            </div>
         </div>
     </div>
 </div>
