@@ -1,4 +1,4 @@
-appControllers.controller('SlotsController', ['$scope', '$rootScope', '$resource', function ($scope, $rootScope, $resource) {
+appControllers.controller('SlotsController', ['$scope', '$window', '$rootScope', '$resource', function ($scope, $window, $rootScope, $resource) {
 
     $scope.exercises = [];
     $scope.muscleRegions = ['Arms','Shoulders','Back','Core','Legs','Chest'];
@@ -15,7 +15,7 @@ appControllers.controller('SlotsController', ['$scope', '$rootScope', '$resource
 
     $scope.getExercises = function() {
         var exercisesResource = $resource('/spin', {'regions':$scope.muscleRegionSelection.toString()}, {
-            list: {method:'GET', isArray:true, headers:{'X-Auth-Token' : $rootScope.token}}
+            list: {method:'GET', isArray:true, headers:{'X-Auth-Token' : $window.sessionStorage.token}}
         });
         exercisesResource.list().$promise.then(function(exercises) {
             $scope.exercises = exercises;

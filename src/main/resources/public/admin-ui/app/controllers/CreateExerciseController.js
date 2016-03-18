@@ -1,4 +1,4 @@
-appControllers.controller('CreateExerciseController', ['$scope', '$rootScope', '$resource', function ($scope, $rootScope, $resource) {
+appControllers.controller('CreateExerciseController', ['$scope', '$window', '$rootScope', '$resource', function ($scope, $window, $rootScope, $resource) {
 
     $scope.selection = {
         type:'Body Building'
@@ -14,7 +14,7 @@ appControllers.controller('CreateExerciseController', ['$scope', '$rootScope', '
             return;
         }
         var muscleGroupsResource = $resource('/admin/muscle-groups/' + muscleRegion.label, {}, {
-            list: {method:'GET', isArray:true, headers:{'X-Auth-Token' : $rootScope.token}}
+            list: {method:'GET', isArray:true, headers:{'X-Auth-Token' : $window.sessionStorage.token}}
         });
         muscleGroupsResource.list().$promise.then(function(muscleGroups) {
             $scope.muscleGroups = muscleGroups;
@@ -28,7 +28,7 @@ appControllers.controller('CreateExerciseController', ['$scope', '$rootScope', '
             return;
         }
         var muscleHeadsResource = $resource('/admin/muscle-heads/' + muscleGroup.id, {}, {
-            list: {method:'GET', isArray:true, headers:{'X-Auth-Token' : $rootScope.token}}
+            list: {method:'GET', isArray:true, headers:{'X-Auth-Token' : $window.sessionStorage.token}}
         });
         muscleHeadsResource.list().$promise.then(function(muscleHeads) {
             $scope.muscleHeads = muscleHeads;
@@ -38,7 +38,7 @@ appControllers.controller('CreateExerciseController', ['$scope', '$rootScope', '
 
     $scope.getMuscleRegions = function() {
         var muscleRegionsResource = $resource('/admin/muscle-regions', {}, {
-            list: {method:'GET', isArray:true, headers:{'X-Auth-Token' : $rootScope.token}}
+            list: {method:'GET', isArray:true, headers:{'X-Auth-Token' : $window.sessionStorage.token}}
         });
         muscleRegionsResource.list().$promise.then(function(muscleRegions) {
             $scope.muscleRegions = muscleRegions;
@@ -48,7 +48,7 @@ appControllers.controller('CreateExerciseController', ['$scope', '$rootScope', '
 
     $scope.getExerciseTypes = function() {
         var exerciseTypesResource = $resource('/admin/exercise-types', {}, {
-            list: {method:'GET', isArray:true, headers:{'X-Auth-Token' : $rootScope.token}}
+            list: {method:'GET', isArray:true, headers:{'X-Auth-Token' : $window.sessionStorage.token}}
         });
         exerciseTypesResource.list().$promise.then(function(exerciseTypes) {
             $scope.exerciseTypes = exerciseTypes;
@@ -88,7 +88,7 @@ appControllers.controller('CreateExerciseController', ['$scope', '$rootScope', '
 
     $scope.save = function() {
         var exerciseResource = $resource('/admin/exercise', {}, {
-            save: {method:'POST', headers:{'X-Auth-Token' : $rootScope.token}}
+            save: {method:'POST', headers:{'X-Auth-Token' : $window.sessionStorage.token}}
         });
         $scope.newExercise.exerciseTypes = $scope.exerciseTypesSelection;
         exerciseResource.save($scope.newExercise).$promise.then(function() {

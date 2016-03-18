@@ -28,11 +28,10 @@ app.config(['$routeProvider', function($routeProvider) {
     }).when('/logout', {
         controller: 'LogoutController'
     }).otherwise({
-        redirectTo: '/login'
+        redirectTo: '/slots'
     });
-}]).run(function($rootScope, $location, $cookies) {
-    $rootScope.token = $cookies.get("token");
-    if($rootScope.token) {
+}]).run(function($rootScope, $window, $location) {
+    if($window.sessionStorage.token) {
         $rootScope.userLoggedIn = true;
     } else {
         $rootScope.userLoggedIn = false;
@@ -68,8 +67,8 @@ app.config(function ($httpProvider) {
     $httpProvider.interceptors.push('authInterceptor');
 });
 
-app.controller('NavigationController', ['$scope', '$rootScope', '$location', function ($scope, $rootScope, $location) {
-    if($rootScope.userLoggedIn) {
+app.controller('NavigationController', ['$scope', '$window', '$rootScope', '$location', function ($scope, $window, $rootScope, $location) {
+    if($window.sessionStorage.token) {
         $scope.navigation = [
             {'name': 'Slots', 'path': '/slots'},
             {'name': 'Exercises', 'path': '/exercises'},
